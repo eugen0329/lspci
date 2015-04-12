@@ -3,12 +3,21 @@
 #include <sys/io.h>
 #include "pci_codes.h"
 
+#define ALL_IO    3
+#define RVAL_ERR -1
+
+int increasePrivelegies(short level)
+{
+    if (iopl(level)) {
+        perror("ERROR iopl:");
+        return RVAL_ERR;
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
-    if (iopl(3)) {
-        perror("Don't have enough rights");
-        return EXIT_FAILURE;
-    }
+    increasePrivelegies(ALL_IO);
 
     return EXIT_SUCCESS;
 }
