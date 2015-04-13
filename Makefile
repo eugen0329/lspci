@@ -1,11 +1,10 @@
 CC = gcc
-CCFLAGS =
+CFLAGS = -std=c99 -Wall -pedantic-errors
 LDFLAGS =
 
 SRC = main.c
 
 TARGET = bin
 
-
 all:
-	$(CC) -o $(TARGET) $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
